@@ -117,6 +117,32 @@ target_link_libraries(knn_cmake DicomClassifier -ldcmdata -ldcmimgle -ldcmimage 
 
 ```
 
+Configuracion para el uso de metricas.
+
+```
+cmake_minimum_required(VERSION 3.5)
+
+project(fnprp LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_library(DicomClassifier STATIC IMPORTED)
+set_target_properties(DicomClassifier PROPERTIES
+    IMPORTED_LOCATION "/home/kevgcastillo/Proyecto/build/libDicomMetrics.a"
+    INTERFACE_INCLUDE_DIRECTORIES "/home/kevgcastillo/Proyecto/metrics"
+)
+
+find_package(OpenMP REQUIRED)
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} DicomClassifier -ldcmdata -ldcmimgle -ldcmimage -ldcmjpeg -lpthread)
+
+```
 
 ## Ejemplos
 
