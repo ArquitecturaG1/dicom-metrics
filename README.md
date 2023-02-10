@@ -117,7 +117,7 @@ target_link_libraries(knn_cmake DicomClassifier -ldcmdata -ldcmimgle -ldcmimage 
 
 ```
 
-Configuracion para el uso de metricas.
+Configuracion para el uso de metricas. Se puede copiar desde add_library y reemplazarlo desde la linea add_executable que esta por defecto en la configuracion inicial de un proyecto.
 
 ```
 cmake_minimum_required(VERSION 3.5)
@@ -143,7 +143,8 @@ add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} DicomClassifier -ldcmdata -ldcmimgle -ldcmimage -ldcmjpeg -lpthread)
 
 ```
-
+Video demostrativo: [link](https://youtu.be/3R_LOxs8yuA)
+ 
 ## Ejemplos
 
 Puede encontrar ejemplos de uso [aquí](examples)
