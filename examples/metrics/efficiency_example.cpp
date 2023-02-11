@@ -27,7 +27,7 @@ int main(){
     //cout<<"Escriba el numero de numeros a ordenar: ";
     //cin>>lon;
     lon = 10;
-    cout<<"Numeros a ordenar: 10";
+    cout<<"Numeros a ordenar: 10"<<endl;
     int arr[10];
     for(int i=0;i<10;i++){
         cout<<"Escriba el numero "<<i+1<<": ";
