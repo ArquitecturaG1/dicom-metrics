@@ -24,8 +24,6 @@ void ordenar_numeros(int arreglo[], int lon, unsigned t0, unsigned t1){
 int main(){
 
     int lon,n;
-    //cout<<"Escriba el numero de numeros a ordenar: ";
-    //cin>>lon;
     lon = 10;
     cout<<"Numeros a ordenar: 10"<<endl;
     int arr[10];
