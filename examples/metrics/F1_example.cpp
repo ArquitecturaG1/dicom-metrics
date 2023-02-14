@@ -9,6 +9,7 @@
 #include "f1score_funciones.h"
 
 #define tam 299000
+#define nt 1
 
 int main(){
     int tamanio = 299000;
@@ -79,8 +80,11 @@ int main(){
     */
 
     //Se invoca a la funcion de la metrica
-    F1_score(tamanio,(float *)P,(float *)R);
-
+    omp_set_num_threads(nt);
+    #pragma omp parallel
+    {
+      F1_score(nt,tamanio,(float *)P,(float *)R);
+    }
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
     printf("\nEl tiempo de ejecucion del proceso es %f segundos\n", time_spent);

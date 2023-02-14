@@ -1,6 +1,6 @@
 #include "f1score_funciones.h"
 
-void F1_score(int tam, float *p,float *r){
+void F1_score(int nt, int tam, float *p,float *r){
 float num;
 float mul[tam];
 float suma[tam];
@@ -8,32 +8,31 @@ float div[tam];
 float f1[tam];
 
 
-#pragma omp parallel num_threads(8)
-{
-
-
-
     int in =0;
     int tr = tam;
 
-
-
-    for(int x=in;x<tr;x++){
+    omp_set_num_threads(nt);
+#pragma omp parallel default (none) shared(in, tr, p, r, num, mul,suma, div, f1)
+{
+    #pragma omp for
+     for(int x=in;x<tr;x++){
         mul[x]=((*(p+x))*(*(r+x)));
     }
 
+    #pragma omp for
     for(int x=in;x<tr;x++){
         suma[x]=(*(p+x))+(*(r+x));
     }
+
+    #pragma omp for
     for(int x=in;x<tr;x++){
         div[x]=((mul[x])/(suma[x]));
     }
+
+    #pragma omp for
     for(int x=in;x<tr;x++){
         f1[x]=(2*(div[x]));
     }
-
-
-
 
 }
 
